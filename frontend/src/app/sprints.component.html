@@ -1,0 +1,94 @@
+<md-sidenav align="end" mode="side" opened class="sideNav" fxLayout="column">
+  <md-card class="newSprintsCard">
+    <md-card-content fxLayout="column">
+      <form novalidate [formGroup]="newSprintForm">
+        <div fxLayout="column">
+      <md-input-container>
+        <input formControlName="newSprintName" [(ngModel)]="newSprint.name" mdInput placeholder="New sprint name" />
+      </md-input-container>
+      <button  [disabled]="newSprintForm.invalid" color="primary"  md-raised-button (click)="saveNewSprint()">Add new sprint</button>
+        </div>
+      </form>
+    </md-card-content>
+  </md-card>
+
+  <md-card fxFlex class="sprintsCard">
+    <md-nav-list>
+      <md-list-item *ngFor="let sprint of sprints" [class.selected]="sprint === selectedSprint" [class.notSelected]="sprint != selectedSprint" (click)="onSprintClicked(sprint)">
+       {{sprint.name}}
+       <span fxFlex></span>
+       <button *ngIf="sprint === selectedSprint" (click)="downloadSprintScripts();" style="background-color: transparent;" md-mini-fab><md-icon>file_download</md-icon></button>
+      </md-list-item>
+    </md-nav-list>
+  </md-card>
+</md-sidenav>
+
+<div *ngIf="selectedSprint" fxLayout="column" fxFlex style="background-color:white; margin-left: 10px;">
+  <div fxLayout="row">
+    <md-card  class="errorHint" *ngIf="newSnippetForm.errors != null && newSnippetForm.errors['noRollback'] === true">
+      Hint!<br/><br/>
+      For alter procedure
+      scripts,<br/> 
+      Please provide the <br/>
+      old rollback <br/>
+      procedure after adding <br/>
+      the line<br/>
+      #procedure-rollbak# <BR/>
+    </md-card>
+
+    <md-card  class="errorHint" *ngIf="newSnippetForm.errors != null && newSnippetForm.errors['invalidTokens'] === true">
+      Hint!<br/><br/>
+      Remove CAC_DEV
+      or CAC_QA.<br/> 
+    </md-card>
+    <md-card style="background-color:#FAFAFA" fxFlex>
+      <md-card-content>
+        <form novalidate [formGroup]="newSnippetForm" fxFlex>
+        <md-input-container fxFlex>
+          <textarea  formControlName="newSnippetSQL" class="snippetInputArea"  [(ngModel)]="newScriptSnippet.snippetDeploy" rows="7" ma mdInput placeholder="New Script Snippet"></textarea>
+       </md-input-container>
+        <div fxLayout="column">
+          <div fxFlex></div>
+          <button style="margin: 20px;" [disabled]="newSnippetForm.invalid" md-raised-button (click)="saveNewScriptSnippet()">Save script snippet</button>
+        </div>
+        </form>
+
+      </md-card-content>
+    </md-card>
+  </div>
+
+  <md-tab-group fxFlex>
+    <md-tab label="Deployment">
+      <div fxLayout="column">
+      <md-card class="scriptSnippetCard" *ngFor="let snippet of scriptSnippets" fxFlex>
+      <md-card-content>
+        <div class="snippetContent">
+          {{snippet.snippetDeploy}}
+        </div>
+      </md-card-content>
+      </md-card>
+      </div>
+    </md-tab>
+    <md-tab label="Rollback" fxLayout="column">
+      <div fxLayout="column">
+       <md-card class="scriptSnippetCard" *ngFor="let snippet of scriptSnippets" fxFlex>
+      <md-card-content>
+         <div class="snippetContent">
+          {{snippet.snippetRollback}}
+        </div>
+      </md-card-content>
+      </md-card>
+      </div>
+    </md-tab>
+  </md-tab-group>
+
+</div>
+
+
+<div *ngIf="selectedSprint == null" style="background-color: #CECECE;" fxLayoutAlign="center center" fxFlex>
+   <md-chip-list>
+   <md-chip class="noSprintsDiv">
+    Select a sprint to work on,<br/>Add a sprint if there is no sprints yet.
+  </md-chip>
+   </md-chip-list>
+</div>
