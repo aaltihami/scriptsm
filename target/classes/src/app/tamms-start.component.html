@@ -1,0 +1,39 @@
+<div fxLayoutAlign="center center" fxFlex>
+  <div fxLayout="row">
+    <md-card class="example-card" class="startBox">
+      <form novalidate (ngSubmit)="onStartFormSubmit()" [formGroup]="startForm">
+
+        <md-card-header>
+          <md-card-title>Start managing your scripts</md-card-title>
+          <md-card-subtitle>Select your project and your name,<br/>In case you did not find your project or your name, Add them. <br/></md-card-subtitle>
+        </md-card-header>
+
+        <br/>
+        <md-card-content>
+          <div fxLayout="column" fxFlex>
+            <md-select placeholder="Select your project" formControlName="selectedProjectId" [(ngModel)]="selectedProjectId">
+              <md-option *ngFor="let project of projects" [value]="project.id">
+                {{project.name}}
+              </md-option>
+            </md-select>
+            <p></p>
+            <md-divider></md-divider>
+            <md-select placeholder="And you are" formControlName="selectedDeveloperId" [(ngModel)]="selectedDeveloperId">
+              <md-option *ngFor="let developer of developers" [value]="developer.id">
+                {{developer.name}}
+              </md-option>
+            </md-select>
+          </div>
+
+
+        </md-card-content>
+        <md-card-actions>
+          <button type="submit" [disabled]="startForm.invalid" md-button fxFlex color="primary">Start</button>
+        </md-card-actions>
+      </form>
+    </md-card>
+
+    <span style="width: 5px;"></span>
+    <manage-projects (projectsChange)="projectsChange($value)"></manage-projects>
+  </div>
+</div>

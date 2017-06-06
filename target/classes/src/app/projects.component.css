@@ -1,0 +1,10 @@
+.loginBox{
+    height: 270px;
+    width: 260px;
+}
+
+.confirmToast{
+    background-color: orangered !important;
+    color:blue !important;
+    position: top !important;
+}

@@ -1,0 +1,81 @@
+:host {
+  display: flex;
+  width: 100%;
+  height: 100%;  
+}
+
+.snippet{
+  width: 98%;
+}
+
+.snippetInputArea{
+  text-decoration: tomato;
+  background-color: white;
+  max-height: 240px;
+  min-height: 100px;
+  resize: vertical;
+}
+
+.scriptSnippetCard{
+  background-color: #EFEFEF;
+  padding:7px;
+  margin: 4px;
+  max-width: 98%;
+  white-space: pre;
+}
+
+.snippetContent{
+  white-space: pre-line;
+}
+
+
+.selected{
+  font-weight: bold;
+  /*background-image:  url('/assets/images/workingSprint.png');*/
+  background-size: 25px 25px;
+  background-repeat: no-repeat;
+  background-position: 98% 50%; 
+  border-left: #673ab7 6px solid;
+  /*border-bottom: #673ab7 1px dashed;*/
+  background-color: #FEFCFF;
+}
+
+
+.notSelected{
+  font-weight: lighter;
+}
+
+.noSprintsDiv{
+  background-color: 22DD22;
+  padding: 20px;
+}
+
+.sideNav{
+  width: 290px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.sprintsCard{
+  padding: 8px;
+  margin: 6px;
+  overflow-y: auto;
+}
+
+.newSprintsCard{
+  padding: 8px;
+  margin: 6px;
+}
+
+.error{
+  color: red;
+  font-weight: bolder;
+}
+
+.errorHint{
+background-color: #F9EBEA;
+color:#CB4335;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 12px;
+font-weight: bolder;
+}
